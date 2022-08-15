@@ -27,6 +27,7 @@ public class RenamerTools {
                 ci.setItemMeta(meta);
 
                 player.getInventory().setItemInMainHand(ci);
+                player.setExp(player.getExp() - 1);
                 player.sendMessage(prefix + "Renamed item to '" + name + ChatColor.RESET + "'");
             }
         }
