@@ -4,4 +4,15 @@ main: net.sootmc.sootrenamer.SootRenamer
 api-version: 1.19
 authors: [ JamieIsGeek ]
 description: A plugin to rename items using commands while still taking XP - Designed for SootMC SMP's
-website: sootmc.net
+website: play.sootmc.net
+
+commands:
+  rename:
+    description: Rename an item
+    usage: /<command> <name>
+
+permissions:
+  sootrenamer.rename:
+    description: Default permission for players that can rename items!
+  sootrenamer.grad:
+    description: Permission to allow players to use gradients!
