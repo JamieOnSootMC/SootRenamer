@@ -5,18 +5,17 @@ import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.Repairable;
 
 public class RenamerTools {
-    private static final String PREFIX = ChatColor.WHITE + "[ " + ChatColor.RED + "Soot" + ChatColor.GOLD + "MC" + ChatColor.WHITE + "] ";
+    private static final String PREFIX = ChatColor.WHITE + "[" + ChatColor.RED + "Soot" + ChatColor.GOLD + "MC" + ChatColor.WHITE + "] ";
     private static final int maximumRepairCost = 40;
 
     public static void Renamer(Player player, String[] args) {
         String name = String.join(" ", args);
 
-        if (name.contains("#") && !player.hasPermission("sootrenamer.grad")) {
+        if (name.contains("#") && !player.hasPermission("sootrenamer.rgb")) {
             player.sendMessage(PREFIX + "You do not have permission to use gradients!");
             return;
         }
