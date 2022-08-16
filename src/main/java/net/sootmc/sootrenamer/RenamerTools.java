@@ -33,7 +33,6 @@ public class RenamerTools {
         name = colourize(name);
         meta.setDisplayName(name);
 
-
         GameMode gameMode = player.getGameMode();
 
         int cost = 1;
@@ -43,7 +42,6 @@ public class RenamerTools {
 
         else if (meta instanceof Repairable repairable)
             cost = Math.min(repairable.getRepairCost(), maximumRepairCost);
-
 
         if (player.getExp() < cost) {
             player.sendMessage(PREFIX + "You do not have enough experience to rename this item. Required Experience: " + cost);
