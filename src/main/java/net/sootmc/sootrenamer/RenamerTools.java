@@ -16,7 +16,7 @@ public class RenamerTools {
     public static void Renamer(Player player, String[] args) {
         String name = String.join(" ", args);
 
-        if(name.contains("#") && !(player.hasPermission("sootrenamer.grad"))) {
+        if (name.contains("#") && !(player.hasPermission("sootrenamer.grad"))) {
             player.sendMessage(PREFIX + "You do not have permission to use gradients!");
             return;
         }
@@ -43,6 +43,12 @@ public class RenamerTools {
 
         else if (meta instanceof Repairable repairable)
             cost = Math.min(repairable.getRepairCost(), maximumRepairCost);
+
+
+        if (player.getExp() < cost) {
+            player.sendMessage(PREFIX + "You do not have enough experience to rename this item. Required Experience: " + cost);
+            return;
+        }
 
         player.getInventory().setItemInMainHand(ci);
         player.setExp(player.getExp() - cost);
