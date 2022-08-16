@@ -8,9 +8,14 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.Repairable;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class RenamerTools {
     private static final String PREFIX = ChatColor.WHITE + "[" + ChatColor.RED + "Soot" + ChatColor.GOLD + "MC" + ChatColor.WHITE + "] ";
     private static final int maximumRepairCost = 40;
+
+    private static final Pattern hexPattern = Pattern.compile("&#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})");
 
     public static void Renamer(Player player, String[] args) {
         String name = String.join(" ", args);
@@ -54,6 +59,13 @@ public class RenamerTools {
     }
 
     private static String colourize(String string) {
-        return ChatColor.translateAlternateColorCodes('&', string);
+        Matcher matcher = hexPattern.matcher(string);
+        StringBuilder builder = new StringBuilder();
+
+        while (matcher.find()) {
+            matcher.appendReplacement(builder, ChatColor.valueOf("#" + matcher.group(1)).toString());
+        }
+
+        return ChatColor.translateAlternateColorCodes('&', builder.toString());
     }
 }
