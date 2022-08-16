@@ -12,7 +12,7 @@ public class RenamerTools {
 
 
     public void Renamer(Player player, String[] args) {
-        String noColour = stringBuilder(args).toString();
+        String noColour = String.join(" ", args);
         if(noColour.contains("#") && !(player.hasPermission("sootrenamer.grad"))) {
             player.sendMessage(prefix + "You do not have permission to use gradients!");
         } else {
@@ -31,13 +31,6 @@ public class RenamerTools {
                 player.sendMessage(prefix + "Renamed item to '" + name + ChatColor.RESET + "'");
             }
         }
-    }
-
-
-    private StringBuffer stringBuilder(String[] args) {
-        StringBuffer sb = new StringBuffer();
-        for (String arg : args) { sb.append(arg + " "); }
-        return sb;
     }
 
     private String colourize(String string) {
