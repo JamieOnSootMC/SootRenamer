@@ -14,5 +14,5 @@ commands:
 permissions:
   sootrenamer.rename:
     description: Default permission for players that can rename items!
-  sootrenamer.grad:
+  sootrenamer.rgb:
     description: Permission to allow players to use hex codes!
