@@ -32,7 +32,7 @@ public class RenamerTools {
 
         name = colourize(name);
         meta.setDisplayName(name);
-        ci.setItemMeta(meta);
+
 
         GameMode gameMode = player.getGameMode();
 
@@ -49,6 +49,7 @@ public class RenamerTools {
             player.sendMessage(PREFIX + "You do not have enough experience to rename this item. Required Experience: " + cost);
             return;
         }
+        ci.setItemMeta(meta);
 
         player.getInventory().setItemInMainHand(ci);
         player.setExp(player.getExp() - cost);
