@@ -11,7 +11,7 @@ import org.bukkit.inventory.meta.Repairable;
 
 public class RenamerTools {
     private static final String PREFIX = ChatColor.WHITE + "[ " + ChatColor.RED + "Soot" + ChatColor.GOLD + "MC" + ChatColor.WHITE + "] ";
-    private static int maximumRepairCost = 40;
+    private static final int maximumRepairCost = 40;
 
     public static void Renamer(Player player, String[] args) {
         String name = String.join(" ", args);
