@@ -8,9 +8,15 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.Repairable;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class RenamerTools {
     private static final String PREFIX = ChatColor.WHITE + "[" + ChatColor.RED + "Soot" + ChatColor.GOLD + "MC" + ChatColor.WHITE + "] ";
     private static final int maximumRepairCost = 40;
+
+    private static final Pattern hexPattern = Pattern.compile("&#([A-Fa-f0-9]{6})");
+    private static char COLOUR_CHAR = ChatColor.COLOR_CHAR;
 
     public static void Renamer(Player player, String[] args) {
         String name = String.join(" ", args);
@@ -29,7 +35,12 @@ public class RenamerTools {
 
         ItemMeta meta = ci.getItemMeta();
 
-        name = colourize(name);
+        if(name.contains("#") && player.hasPermission("sootrenamer.rgb"))
+            name = translateHexCode(name);
+        else
+            name = ChatColor.translateAlternateColorCodes('&', name);
+
+
         meta.setDisplayName(name);
 
         GameMode gameMode = player.getGameMode();
@@ -53,7 +64,17 @@ public class RenamerTools {
         player.sendMessage(PREFIX + "Renamed item to '" + name + ChatColor.RESET + "'");
     }
 
-    private static String colourize(String string) {
-        return ChatColor.translateAlternateColorCodes('&', string);
+    private static String translateHexCode(String string) {
+        Matcher matcher = hexPattern.matcher(string);
+        StringBuffer buffer = new StringBuffer();
+        while (matcher.find()) {
+            String group = matcher.group(1);
+            matcher.appendReplacement(buffer, COLOUR_CHAR + "x"
+                    + COLOUR_CHAR + group.charAt(0) + COLOUR_CHAR + group.charAt(1)
+                    + COLOUR_CHAR + group.charAt(2) + COLOUR_CHAR + group.charAt(3)
+                    + COLOUR_CHAR + group.charAt(4) + COLOUR_CHAR + group.charAt(5)
+            );
+        }
+        return matcher.appendTail(buffer).toString();
     }
 }
