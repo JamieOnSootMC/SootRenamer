@@ -13,7 +13,7 @@
 
     <description>A plugin to rename items using commands while still taking XP - Designed for SootMC SMP's</description>
     <properties>
-        <java.version>1.8</java.version>
+        <java.version>16</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
     <url>sootmc.net</url>
