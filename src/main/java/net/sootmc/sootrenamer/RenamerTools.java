@@ -11,9 +11,9 @@ public class RenamerTools {
 
 
     public static void Renamer(Player player, String[] args) {
-        String noColour = String.join(" ", args);
+        String name = String.join(" ", args);
 
-        if(noColour.contains("#") && !(player.hasPermission("sootrenamer.grad"))) {
+        if(name.contains("#") && !(player.hasPermission("sootrenamer.grad"))) {
             player.sendMessage(prefix + "You do not have permission to use gradients!");
             return;
         }
@@ -27,7 +27,7 @@ public class RenamerTools {
 
         ItemMeta meta = ci.getItemMeta();
 
-        String name = colourize(noColour);
+        name = colourize(name);
         meta.setDisplayName(name);
         ci.setItemMeta(meta);
 
