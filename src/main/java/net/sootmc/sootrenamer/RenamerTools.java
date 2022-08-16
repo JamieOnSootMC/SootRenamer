@@ -1,14 +1,17 @@
 package net.sootmc.sootrenamer;
 
 import org.bukkit.ChatColor;
+import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.inventory.meta.Repairable;
 
 public class RenamerTools {
     private static final String PREFIX = ChatColor.WHITE + "[ " + ChatColor.RED + "Soot" + ChatColor.GOLD + "MC" + ChatColor.WHITE + "] ";
-
+    private static int maximumRepairCost = 40;
 
     public static void Renamer(Player player, String[] args) {
         String name = String.join(" ", args);
@@ -31,8 +34,18 @@ public class RenamerTools {
         meta.setDisplayName(name);
         ci.setItemMeta(meta);
 
+        GameMode gameMode = player.getGameMode();
+
+        int cost = 1;
+
+        if (gameMode.equals(GameMode.CREATIVE) || gameMode.equals(GameMode.SPECTATOR))
+            cost = 0;
+
+        else if (meta instanceof Repairable repairable)
+            cost = Math.min(repairable.getRepairCost(), maximumRepairCost);
+
         player.getInventory().setItemInMainHand(ci);
-        player.setExp(player.getExp() - 1);
+        player.setExp(player.getExp() - cost);
         player.sendMessage(PREFIX + "Renamed item to '" + name + ChatColor.RESET + "'");
     }
 
