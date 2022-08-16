@@ -2,7 +2,7 @@ name: SootRenamer
 version: '${project.version}'
 main: net.sootmc.sootrenamer.SootRenamer
 api-version: 1.19
-authors: [ JamieIsGeek ]
+authors: [ JamieIsGeek, jaapie_aapie ]
 description: A plugin to rename items using commands while still taking XP - Designed for SootMC SMP's
 website: play.sootmc.net
 

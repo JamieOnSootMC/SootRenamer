@@ -11,32 +11,29 @@ public class RenamerTools {
 
 
     public static void Renamer(Player player, String[] args) {
-        String noColour = stringBuilder(args).toString();
+        String noColour = String.join(" ", args);
+
         if(noColour.contains("#") && !(player.hasPermission("sootrenamer.grad"))) {
             player.sendMessage(prefix + "You do not have permission to use gradients!");
-        } else {
-            ItemStack ci = player.getInventory().getItemInMainHand();
-            if (ci == null || ci.getType().equals(Material.AIR)) {
-                player.sendMessage(prefix + "You cannot rename nothing!");
-            } else {
-                ItemMeta meta = ci.getItemMeta();
-
-                String name = colourize(noColour);
-                meta.setDisplayName(name);
-                ci.setItemMeta(meta);
-
-                player.getInventory().setItemInMainHand(ci);
-                player.setExp(player.getExp() - 1);
-                player.sendMessage(prefix + "Renamed item to '" + name + ChatColor.RESET + "'");
-            }
+            return;
         }
-    }
 
+        ItemStack ci = player.getInventory().getItemInMainHand();
 
-    private static StringBuffer stringBuilder(String[] args) {
-        StringBuffer sb = new StringBuffer();
-        for (String arg : args) { sb.append(arg + " "); }
-        return sb;
+        if (ci == null || ci.getType().equals(Material.AIR)) {
+            player.sendMessage(prefix + "You cannot rename nothing!");
+            return;
+        }
+
+        ItemMeta meta = ci.getItemMeta();
+
+        String name = colourize(noColour);
+        meta.setDisplayName(name);
+        ci.setItemMeta(meta);
+
+        player.getInventory().setItemInMainHand(ci);
+        player.setExp(player.getExp() - 1);
+        player.sendMessage(prefix + "Renamed item to '" + name + ChatColor.RESET + "'");
     }
 
     private static String colourize(String string) {

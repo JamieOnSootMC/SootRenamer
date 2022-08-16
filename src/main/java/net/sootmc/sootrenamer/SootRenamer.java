@@ -12,14 +12,14 @@ public final class SootRenamer extends JavaPlugin implements CommandExecutor {
     @Override
     public void onEnable() {
         getCommand("rename").setExecutor(this);
-        Bukkit.getLogger().info("[SootRenamer] SootRenamer is now enabled");
-        Bukkit.getLogger().info("[SootRenamer] Made my JamieIsGeek :)");
+        getLogger().info("SootRenamer is now enabled");
+        getLogger().info("Made my JamieIsGeek :)");
     }
 
     @Override
     public void onDisable() {
-        Bukkit.getLogger().info("[SootRenamer] SootRenamer is now disabled");
-        Bukkit.getLogger().info("[SootRenamer] Made my JamieIsGeek :)");
+        getLogger().info("SootRenamer is now disabled");
+        getLogger().info("Made my JamieIsGeek :)");
     }
 
 
