@@ -26,8 +26,7 @@ public final class SootRenamer extends JavaPlugin implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if(command.getLabel().equals("rename")) {
-            if(sender instanceof Player && sender.hasPermission("sootrenamer.rename")) {
-                Player player = (Player) sender;
+            if(sender instanceof Player player && sender.hasPermission("sootrenamer.rename")) {
                 RenamerTools.Renamer(player, args);
             } else {
                 sender.sendMessage("You cannot rename items!");
