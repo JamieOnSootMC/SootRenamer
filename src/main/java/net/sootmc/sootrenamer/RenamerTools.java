@@ -7,21 +7,21 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 public class RenamerTools {
-    private static String prefix = ChatColor.WHITE + "[ " + ChatColor.RED + "Soot" + ChatColor.GOLD + "MC" + ChatColor.WHITE + "] ";
+    private static final String PREFIX = ChatColor.WHITE + "[ " + ChatColor.RED + "Soot" + ChatColor.GOLD + "MC" + ChatColor.WHITE + "] ";
 
 
     public static void Renamer(Player player, String[] args) {
         String noColour = String.join(" ", args);
 
         if(noColour.contains("#") && !(player.hasPermission("sootrenamer.grad"))) {
-            player.sendMessage(prefix + "You do not have permission to use gradients!");
+            player.sendMessage(PREFIX + "You do not have permission to use gradients!");
             return;
         }
 
         ItemStack ci = player.getInventory().getItemInMainHand();
 
         if (ci == null || ci.getType().equals(Material.AIR)) {
-            player.sendMessage(prefix + "You cannot rename nothing!");
+            player.sendMessage(PREFIX + "You cannot rename nothing!");
             return;
         }
 
@@ -33,7 +33,7 @@ public class RenamerTools {
 
         player.getInventory().setItemInMainHand(ci);
         player.setExp(player.getExp() - 1);
-        player.sendMessage(prefix + "Renamed item to '" + name + ChatColor.RESET + "'");
+        player.sendMessage(PREFIX + "Renamed item to '" + name + ChatColor.RESET + "'");
     }
 
     private static String colourize(String string) {
