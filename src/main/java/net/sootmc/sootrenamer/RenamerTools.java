@@ -42,9 +42,8 @@ public class RenamerTools {
 
         if(name.contains("#") && player.hasPermission("sootrenamer.rgb"))
             name = translateHexCode(name);
-        else
-            name = ChatColor.translateAlternateColorCodes('&', name);
 
+        name = ChatColor.translateAlternateColorCodes('&', name);
 
         meta.setDisplayName(name);
 
