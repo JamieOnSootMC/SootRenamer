@@ -1,6 +1,5 @@
 package net.sootmc.sootrenamer;
 
-import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -13,13 +12,13 @@ public final class SootRenamer extends JavaPlugin implements CommandExecutor {
     public void onEnable() {
         getCommand("rename").setExecutor(this);
         getLogger().info("SootRenamer is now enabled");
-        getLogger().info("Made my JamieIsGeek :)");
+        getLogger().info("Made by JamieIsGeek :)");
     }
 
     @Override
     public void onDisable() {
         getLogger().info("SootRenamer is now disabled");
-        getLogger().info("Made my JamieIsGeek :)");
+        getLogger().info("Made by JamieIsGeek :)");
     }
 
 
