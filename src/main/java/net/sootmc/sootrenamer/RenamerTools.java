@@ -26,7 +26,7 @@ public class RenamerTools {
             return;
         }
 
-        if(name.contains("'&k") && !player.hasPermission("sootrenamer.magic")) {
+        if(name.contains("&k") && !player.hasPermission("sootrenamer.magic")) {
             player.sendMessage(PREFIX + "You are not allowed to use the magic formatting");
             return;
         }
