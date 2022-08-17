@@ -26,6 +26,11 @@ public class RenamerTools {
             return;
         }
 
+        if(name.contains("&k") && !player.hasPermission("sootrenamer.magic")) {
+            player.sendMessage(PREFIX + "You are not allowed to use the magic formatting");
+            return;
+        }
+
         ItemStack ci = player.getInventory().getItemInMainHand();
 
         if (ci == null || ci.getType().equals(Material.AIR)) {
