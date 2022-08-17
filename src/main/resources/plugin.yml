@@ -16,3 +16,5 @@ permissions:
     description: Default permission for players that can rename items!
   sootrenamer.rgb:
     description: Permission to allow players to use hex codes!
+  sootrenamer.magic:
+    description: Permission to allow players to use the magic formatting (&k)
