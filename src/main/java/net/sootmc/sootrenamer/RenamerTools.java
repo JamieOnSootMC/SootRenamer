@@ -47,25 +47,30 @@ public class RenamerTools {
 
         meta.setDisplayName(name);
 
-        GameMode gameMode = player.getGameMode();
+        int cost = getRepairCost(player, meta);
 
-        int cost = 1;
-
-        if (gameMode.equals(GameMode.CREATIVE) || gameMode.equals(GameMode.SPECTATOR))
-            cost = 0;
-
-        else if (meta instanceof Repairable repairable)
-            cost = Math.min(repairable.getRepairCost(), maximumRepairCost);
-
-        if (player.getExp() < cost) {
+        if (player.getLevel() < cost) {
             player.sendMessage(PREFIX + "You do not have enough experience to rename this item. Required Experience: " + cost);
             return;
         }
+
         ci.setItemMeta(meta);
 
         player.getInventory().setItemInMainHand(ci);
-        player.setExp(player.getExp() - cost);
-        player.sendMessage(PREFIX + "Renamed item to '" + name + ChatColor.RESET + "'");
+        player.setLevel(player.getLevel() - cost);
+        player.sendMessage(PREFIX + "Renamed item to '" + name + ChatColor.RESET + "' for " + ChatColor.GREEN + cost + ChatColor.RESET + " levels");
+    }
+
+    private static int getRepairCost(Player player, ItemMeta meta) {
+        int cost = 1;
+        if(player.getGameMode().equals(GameMode.CREATIVE) || player.getGameMode().equals(GameMode.SPECTATOR))
+            return 0;
+        else if(meta instanceof Repairable repairable) {
+            cost = repairable.getRepairCost() + 1;
+            return Math.min(cost, maximumRepairCost);
+        }
+
+        return cost;
     }
 
     private static String translateHexCode(String string) {
