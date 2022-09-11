@@ -16,12 +16,12 @@ public class RenamerTools {
     private static final int maximumRepairCost = 40;
 
     private static final Pattern hexPattern = Pattern.compile("&#([A-Fa-f0-9]{6})");
-    private static char COLOUR_CHAR = ChatColor.COLOR_CHAR;
+    private static final char COLOUR_CHAR = ChatColor.COLOR_CHAR;
 
     public static void Renamer(Player player, String[] args) {
         String name = String.join(" ", args);
 
-        if (name.contains("#") && !player.hasPermission("sootrenamer.rgb")) {
+        if (name.contains("#") && !player.hasPermission("coloredanvils.color.hex")) {
             player.sendMessage(PREFIX + "You do not have permission to use gradients!");
             return;
         }
@@ -40,7 +40,7 @@ public class RenamerTools {
 
         ItemMeta meta = ci.getItemMeta();
 
-        if(name.contains("#") && player.hasPermission("sootrenamer.rgb"))
+        if(name.contains("#") && player.hasPermission("coloredanvils.color.hex"))
             name = translateHexCode(name);
 
         name = ChatColor.translateAlternateColorCodes('&', name);
